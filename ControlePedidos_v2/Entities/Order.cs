@@ -1,4 +1,5 @@
 ﻿using ControlePedidos_v2.Entities.Enums;
+using System.Text;
 
 namespace ControlePedidos_v2.Entities
 {
@@ -43,6 +44,28 @@ namespace ControlePedidos_v2.Entities
             }
 
             return total;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("ORDER SUMARY");
+            stringBuilder.Append("Order moment: "+ Moment.ToString("dd/mm/yyyy HH:mm:ss"));
+            stringBuilder.AppendLine("Order status: "+ Status);
+            stringBuilder.AppendLine("Client: "+ Client);
+            stringBuilder.AppendLine("Order items: ");
+            
+            foreach (OrderItem item in Itens)
+            {
+                stringBuilder.AppendLine(item.ToString());
+              
+               
+            }
+
+            stringBuilder.AppendLine("Total price: $"+Total());
+           
+            return stringBuilder.ToString();
         }
     }
 }
